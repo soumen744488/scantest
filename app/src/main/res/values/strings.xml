@@ -1,0 +1,21 @@
+<resources>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="app_name">ScanByOwn</string>
+    <string name="Help">Help</string>
+    <string name="RateThisApp">RateThisApp</string>
+    <string name="ShareThisApp">ShareThisApp</string>
+    <string name="Signin">Signin</string>
+    <string name="Signout">Signout</string>
+    <string name="website">www.scanbyown.com</string>
+    <string name="share">Share</string>
+    <string name="SortByName">SortByName</string>
+    <string name="SortByDate">SortByDate</string>
+    <string name="Delete">Delete</string>
+    <string name="Exit">Exit</string>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

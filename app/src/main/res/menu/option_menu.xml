@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/sortbyname"
+        android:icon="@drawable/sortbyname"
+        android:title="@string/SortByName" />
+
+    <item
+        android:id="@+id/sortbydate"
+        android:icon="@drawable/sortbydate"
+        android:title="@string/SortByDate" />
+
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/share"
+        android:title="@string/share" />
+
+    <item
+        android:id="@+id/trash"
+        android:icon="@drawable/delete"
+        android:title="@string/Delete" />
+
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/exit"
+        android:title="@string/Exit" />
+
+</menu>
