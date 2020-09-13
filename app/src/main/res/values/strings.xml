@@ -13,6 +13,7 @@
     <string name="SortByDate">SortByDate</string>
     <string name="Delete">Delete</string>
     <string name="Exit">Exit</string>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
