@@ -3,10 +3,12 @@ package com.example.scantest;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,6 +40,7 @@ public class Home extends AppCompatActivity {
     Animation fabOpen,fabClose,rotateForward,rotateBackward;
     boolean isOpen=false;
     Bitmap bitmap;
+    AlertDialog creditdialog,privacydialog,aboutappdialog;
 
 
     @Override
@@ -56,6 +60,13 @@ public class Home extends AppCompatActivity {
         fabClose = AnimationUtils.loadAnimation(this,R.anim.fab_close);
         rotateForward = AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
         rotateBackward = AnimationUtils.loadAnimation(this,R.anim.rotate_bacward);
+
+        AlertDialog.Builder creditbuilder = new AlertDialog.Builder(Home.this);
+        LayoutInflater inf = this.getLayoutInflater();
+        final View dialogView = inf.inflate(aboutus,null);
+        creditbuilder.setView(dialogView);
+        creditbuilder.setCancelable(true);
+        creditdialog = creditbuilder.create();
 
         NavigationView navigationView = findViewById(R.id.navigationView);
         View view = navigationView.inflateHeaderView(R.layout.navigation_header);
@@ -80,8 +91,12 @@ public class Home extends AppCompatActivity {
                         startActivity(Intent.createChooser(myIntent,"Share using"));
                         break;
                     case R.id.nav_AboutUs:
-                       startActivity( new Intent(Home.this,Aboutus.class));
-                       break;
+                        creditdialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                creditdialog.dismiss();
+                            }
+                        });
                     case R.id.nav_Help:
                         break;
                     case R.id.nav_RateThisApp:
