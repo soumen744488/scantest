@@ -61,12 +61,7 @@ public class Home extends AppCompatActivity {
         rotateForward = AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
         rotateBackward = AnimationUtils.loadAnimation(this,R.anim.rotate_bacward);
 
-        AlertDialog.Builder creditbuilder = new AlertDialog.Builder(Home.this);
-        LayoutInflater inf = this.getLayoutInflater();
-        final View dialogView = inf.inflate(aboutus,null);
-        creditbuilder.setView(dialogView);
-        creditbuilder.setCancelable(true);
-        creditdialog = creditbuilder.create();
+
 
         NavigationView navigationView = findViewById(R.id.navigationView);
         View view = navigationView.inflateHeaderView(R.layout.navigation_header);
@@ -91,16 +86,11 @@ public class Home extends AppCompatActivity {
                         startActivity(Intent.createChooser(myIntent,"Share using"));
                         break;
                     case R.id.nav_AboutUs:
-                        creditdialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                creditdialog.dismiss();
-                            }
-                        });
+
                     case R.id.nav_Help:
                         break;
                     case R.id.nav_RateThisApp:
-                        startActivity( new Intent(Home.this,Rateus.class));
+
                         break;
                     case R.id.nav_Signin:
                         break;
