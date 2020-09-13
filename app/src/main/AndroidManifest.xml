@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Clickbycamara"></activity>
-        <activity android:name=".Rateus" />
-        <activity android:name=".Shareapp" />
-        <activity android:name=".Aboutus" />
         <activity android:name=".After_next" />
         <activity
             android:name=".Home"
