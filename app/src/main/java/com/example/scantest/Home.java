@@ -71,12 +71,21 @@ public class Home extends AppCompatActivity {
             private void UserItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_ShareThisApp:
+                        Intent myIntent= new Intent(Intent.ACTION_SEND);
+                        myIntent.setType("text/plain");
+                        String sharebody="empty";
+                        String sharesub="Text";
+                        myIntent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
+                        myIntent.putExtra(Intent.EXTRA_TEXT,sharebody);
+                        startActivity(Intent.createChooser(myIntent,"Share using"));
                         break;
                     case R.id.nav_AboutUs:
-                        break;
+                       startActivity( new Intent(Home.this,Aboutus.class));
+                       break;
                     case R.id.nav_Help:
                         break;
                     case R.id.nav_RateThisApp:
+                        startActivity( new Intent(Home.this,Rateus.class));
                         break;
                     case R.id.nav_Signin:
                         break;
