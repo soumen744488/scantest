@@ -79,13 +79,14 @@ public class Home extends AppCompatActivity {
                     case R.id.nav_ShareThisApp:
                         Intent myIntent= new Intent(Intent.ACTION_SEND);
                         myIntent.setType("text/plain");
-                        String sharebody="empty";
+                        String sharebody="https://drive.google.com/drive/folders/1EUb55LVNpDJZqR9tJPxZPm3EnrCDzPxT?usp=sharing";
                         String sharesub="Text";
                         myIntent.putExtra(Intent.EXTRA_SUBJECT,sharesub);
                         myIntent.putExtra(Intent.EXTRA_TEXT,sharebody);
                         startActivity(Intent.createChooser(myIntent,"Share using"));
                         break;
                     case R.id.nav_AboutUs:
+                        break;
 
                     case R.id.nav_Help:
                         break;
@@ -96,6 +97,7 @@ public class Home extends AppCompatActivity {
                         break;
                     case R.id.nav_Signout:
                         break;
+
                 }
 
             }
