@@ -85,7 +85,7 @@ public class After_next extends AppCompatActivity {
                         imageView.setImageDrawable(null);
                        startActivity(new Intent(After_next.this,Home.class));
                         finish();
-                        break;
+
                 }
             }
 
