@@ -130,7 +130,7 @@ public class Home extends AppCompatActivity {
                 animateFab();
                 getPicture();
 
-               // Toast.makeText(Home.this, "Gallary Click", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(Home.this, "Gallary Click", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -180,8 +180,8 @@ public class Home extends AppCompatActivity {
 
 
 
-      @Override
-     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==CAMERA_IMAGE_CAPTURE_CODE ){
 
@@ -189,17 +189,17 @@ public class Home extends AppCompatActivity {
 
 
             i.setData(camareImageUri);
-           // i.putExtra("cameraImage",camareImageUri.toString());
+            // i.putExtra("cameraImage",camareImageUri.toString());
             startActivity(i);
         }
-          else if(requestCode == GALLARY_IMAGE_CAPTURE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
-              //gallaryImageUri=data.getData();
-              Intent i =new Intent(Home.this,After_next.class);
-              i.setData(gallaryImageUri);
-              //  i.putExtra("gallryImage",gallaryImageUri.toString());
-              startActivity(i);
+        else if(requestCode == GALLARY_IMAGE_CAPTURE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            //gallaryImageUri=data.getData();
+            Intent i =new Intent(Home.this,After_next.class);
+            i.setData(gallaryImageUri);
+            //  i.putExtra("gallryImage",gallaryImageUri.toString());
+            startActivity(i);
 
-          }
+        }
     }
 
     private void getPicture() {
@@ -259,11 +259,10 @@ public class Home extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-           drawerLayout.closeDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         }else {
             super.onBackPressed();
 
         }
     }
 }
-
