@@ -8,10 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -34,6 +38,10 @@ import java.io.IOException;
 
 public class Home extends AppCompatActivity {
     public static final int CAMERA_REQUEST = 1888;
+    public static final int CAMERA_IMAGE_CAPTURE_CODE = 1000;
+    public static final int GALLARY_IMAGE_CAPTURE_CODE = 1001;
+    public static final int PERMISSION_CODE = 1111;
+
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
     FloatingActionButton fabAdd,fabCamera,fabGallary;
@@ -41,6 +49,8 @@ public class Home extends AppCompatActivity {
     boolean isOpen=false;
     Bitmap bitmap;
     AlertDialog creditdialog,privacydialog,aboutappdialog;
+    Uri camareImageUri,gallaryImageUri;
+
 
 
     @Override
@@ -109,15 +119,11 @@ public class Home extends AppCompatActivity {
                 animateFab();
             }
         });
-        fabCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFab();
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent,CAMERA_REQUEST);
-               // Toast.makeText(Home.this, "Camera Click", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+
+
+
+
         fabGallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,26 +135,77 @@ public class Home extends AppCompatActivity {
         });
 
     }
+
+    public void check(View v){
+        //checkPermission
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M){
+            if(checkSelfPermission(Manifest.permission.CAMERA)==
+                    PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
+            PackageManager.PERMISSION_DENIED){
+                String[] permission = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permission,PERMISSION_CODE);
+            }
+            else{
+                openCamera();
+            }
+
+
+        }
+        else{
+            openCamera();
+        }
+    }
+
+    private void openCamera() {
+        ContentValues values=new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE,"new image");
+        values.put(MediaStore.Images.Media.DESCRIPTION,"From the camera");
+        camareImageUri=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+        Intent cameraIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,camareImageUri);
+        startActivityForResult(cameraIntent,CAMERA_IMAGE_CAPTURE_CODE);
+    }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==CAMERA_REQUEST) {
+            openCamera();
+        }
+
+    }*/
+
+
+
+      @Override
+     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==CAMERA_IMAGE_CAPTURE_CODE ){
+
+            Intent i =new Intent(Home.this,After_next.class);
+
+
+            i.setData(camareImageUri);
+           // i.putExtra("cameraImage",camareImageUri.toString());
+            startActivity(i);
+        }
+          else if(requestCode == GALLARY_IMAGE_CAPTURE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
+              //gallaryImageUri=data.getData();
+              Intent i =new Intent(Home.this,After_next.class);
+              i.setData(gallaryImageUri);
+              //  i.putExtra("gallryImage",gallaryImageUri.toString());
+              startActivity(i);
+
+          }
+    }
+
     private void getPicture() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent,"Select Picture"),1);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),GALLARY_IMAGE_CAPTURE_CODE);
     }
-   /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri filePath = data.getData();
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
-                ivProfileImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                Log.e("hello",e.getMessage());
-            }
 
-        }
-    }*/
 
     private void animateFab(){
         if(isOpen){
