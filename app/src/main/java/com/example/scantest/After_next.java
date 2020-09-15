@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 public class After_next extends AppCompatActivity {
 
     ImageView imageView;
-    Uri camera_Image_Uri, gallary_Image_Uri;
+    Uri camera_Image_Uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
