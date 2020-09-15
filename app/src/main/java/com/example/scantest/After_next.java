@@ -1,11 +1,21 @@
 package com.example.scantest;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.opengl.Matrix;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 public class After_next extends AppCompatActivity {
 
@@ -23,12 +33,57 @@ public class After_next extends AppCompatActivity {
            // imageView.setImageURI(camera_Image_Uri);
 
             // gallary_Image_Uri =in.getData();
-            //imageView.setImageURI(gallary_Image_Uri);
+            //imageView.setImageURI(gallary_Image_Uri);}
         Intent in= getIntent();
         camera_Image_Uri=in.getData();
         imageView.setImageURI(camera_Image_Uri);
 
 
-        //}
+        BottomNavigationView bottomNavigationView = findViewById(R.id.edit_nav);
+
+
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                UserItemSelected(item);
+                return false;
+            }
+
+
+
+            private void UserItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.crop:
+
+
+                        break;
+                    case R.id.rotation:
+                       //imageView.setRotation((float) 90.0);
+                        Animation anim= new RotateAnimation(90,90,imageView.getPivotX(),imageView.getPivotY());
+                        anim.setDuration(2000);
+                        anim.setRepeatCount(Animation.INFINITE);
+                        imageView.startAnimation(anim);
+
+
+                        break;
+                    case R.id.filter:
+                        break;
+                    case R.id.color:
+                        break;
+                    case R.id.trash:
+                        break;
+                }
+            }
+
+        });
+
+
+
+
+
+
     }
+
 }

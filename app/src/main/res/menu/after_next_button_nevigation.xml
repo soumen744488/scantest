@@ -6,7 +6,8 @@
         android:id="@+id/crop"
         android:icon="@drawable/marketing"
         android:title="crop"
-        android:enabled="true"/>
+        android:enabled="true"
+        />
     <item
         android:id="@+id/rotation"
         android:icon="@drawable/replay"

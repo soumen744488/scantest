@@ -134,27 +134,30 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        fabCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.CAMERA)==
+                            PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
+                            PackageManager.PERMISSION_DENIED){
+                        String[] permission = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permission,PERMISSION_CODE);
+                    }
+                    else{
+                        openCamera();
+                    }
+
+
+                }
+                else{
+                    openCamera();
+                }
+            }
+        });
     }
 
-    public void check(View v){
-        //checkPermission
-        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M){
-            if(checkSelfPermission(Manifest.permission.CAMERA)==
-                    PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
-            PackageManager.PERMISSION_DENIED){
-                String[] permission = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                requestPermissions(permission,PERMISSION_CODE);
-            }
-            else{
-                openCamera();
-            }
 
-
-        }
-        else{
-            openCamera();
-        }
-    }
 
     private void openCamera() {
         ContentValues values=new ContentValues();
