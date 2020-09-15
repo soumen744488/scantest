@@ -73,6 +73,7 @@ public class After_next extends AppCompatActivity {
                     case R.id.color:
                         break;
                     case R.id.trash:
+                        imageView.setImageDrawable(null);
                         break;
                 }
             }
