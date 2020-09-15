@@ -60,18 +60,15 @@ public class After_next extends AppCompatActivity {
 
                         break;
                     case R.id.rotation:
-                       //imageView.setRotation((float) 90.0);
-                        Animation anim= new RotateAnimation(90,90,imageView.getPivotX(),imageView.getPivotY());
-                        anim.setDuration(2000);
-                        anim.setRepeatCount(Animation.INFINITE);
-                        imageView.startAnimation(anim);
+                       imageView.setRotation(imageView.getRotation() + 90);
+                       break;
 
-
-                        break;
                     case R.id.filter:
                         break;
+
                     case R.id.color:
                         break;
+
                     case R.id.trash:
                         break;
                 }
