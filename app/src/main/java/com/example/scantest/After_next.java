@@ -57,17 +57,6 @@ public class After_next extends AppCompatActivity {
                 UserItemSelected(item);
                 return false;
             }
-
-            public void onActivityResult(int requestCode, int resultCode, Intent data) {
-                if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-                    final Uri resultUri = UCrop.getOutput(data);
-                } else if (resultCode == UCrop.RESULT_ERROR) {
-                    final Throwable cropError = UCrop.getError(data);
-                }
-            }
-
-
-
             private void UserItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.crop:
