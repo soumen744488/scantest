@@ -101,7 +101,7 @@ public class Home extends AppCompatActivity {
                     case R.id.nav_Help:
                         break;
                     case R.id.nav_RateThisApp:
-
+                      //  startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/")));
                         break;
                     case R.id.nav_Signin:
                         break;
@@ -243,7 +243,28 @@ public class Home extends AppCompatActivity {
         } else if (item.getItemId() == R.id.trash) {
 
         } else if (item.getItemId() == R.id.exit) {
-            finish();
+           // finish();
+            AlertDialog.Builder build = new AlertDialog.Builder(this);
+
+            build.setTitle(" Exit ")
+                    .setMessage("Do you Want to exit from this application ?")
+                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    })
+                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    })
+                    .setCancelable(false);
+
+            AlertDialog alert = build.create();
+            alert.show();
+
         }
         return super.onOptionsItemSelected(item);
     }
