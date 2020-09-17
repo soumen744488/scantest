@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -44,6 +45,7 @@ public class Home extends AppCompatActivity {
     public static final int CAMERA_IMAGE_CAPTURE_CODE = 1000;
     public static final int GALLARY_IMAGE_CAPTURE_CODE = 1001;
     public static final int PERMISSION_CODE = 1111;
+
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -149,13 +151,13 @@ public class Home extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode== Activity.RESULT_OK){
             Uri imageuri = CropImage.getPickImageResultUri(this,data);
-            if(CropImage.isReadExternalStoragePermissionsRequired(this,imageuri)){
+            //if(CropImage.isReadExternalStoragePermissionsRequired(this,imageuri)){
                 uri=imageuri;
-                Toast.makeText(getApplicationContext(), imageuri.toString(), Toast.LENGTH_SHORT).show();
-                requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},0);
-            }else{
+              //  Toast.makeText(getApplicationContext(), imageuri.toString(), Toast.LENGTH_SHORT).show();
+              //  requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},0);
+           // }else{
                 CropImage.activity(uri).setGuidelines(CropImageView.Guidelines.ON).setMultiTouchEnabled(true).start(this);
-            }
+            //}
         }
         if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
