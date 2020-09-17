@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -21,20 +24,20 @@ import com.yalantis.ucrop.UCrop;
 public class After_next extends AppCompatActivity {
 
     ImageView imageView;
-    Uri camera_Image_Uri, uri_new;
+    Uri camera_Image_Uri, gallaryuri,uri_new;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_next);
         imageView = findViewById(R.id.imageView2);
-        //Bundle extras = getIntent().getExtras();
-       // if (extras.containsKey("camareImage")) {
-           // camera_Image_Uri = Uri.parse(extras.getString("cameraImage"));
-           // imageView.setImageURI(camera_Image_Uri);
 
-            // gallary_Image_Uri =in.getData();
-            //imageView.setImageURI(gallary_Image_Uri);}
+        if (getIntent().getExtras() != null) {
+            gallaryuri = Uri.parse(getIntent().getStringExtra("imageUri"));
+            //Toast.makeText(getApplicationContext(), gallaryuri.toString(), Toast.LENGTH_SHORT).show();
+            imageView.setImageURI(gallaryuri);
+        }
+
         final Intent in= getIntent();
         camera_Image_Uri=in.getData();
         imageView.setImageURI(camera_Image_Uri);
