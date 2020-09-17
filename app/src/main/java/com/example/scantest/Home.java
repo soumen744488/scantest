@@ -187,8 +187,6 @@ public class Home extends AppCompatActivity {
 
             Intent i =new Intent(Home.this,After_next.class);
             i.setData(camareImageUri);
-            i.putExtra("check","cam");
-
             startActivity(i);
         }
         else if(requestCode == GALLARY_IMAGE_CAPTURE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){

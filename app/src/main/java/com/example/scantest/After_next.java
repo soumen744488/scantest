@@ -34,22 +34,16 @@ public class After_next extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_next);
         imageView = findViewById(R.id.imageView2);
-        Intent in = getIntent();
-        String sc=in.getStringExtra("check");
-        if(sc == "cam"){
-            camera_Image_Uri=in.getData();
-            imageView.setImageURI(camera_Image_Uri);
-        }
-        else{
+
+        if (getIntent().getExtras() != null) {
             gallaryuri = Uri.parse(getIntent().getStringExtra("imageUri"));
             //Toast.makeText(getApplicationContext(), gallaryuri.toString(), Toast.LENGTH_SHORT).show();
             imageView.setImageURI(gallaryuri);
         }
 
-
-
-
-
+        final Intent in= getIntent();
+        camera_Image_Uri=in.getData();
+        imageView.setImageURI(camera_Image_Uri);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.edit_nav);
