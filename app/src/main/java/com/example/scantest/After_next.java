@@ -35,7 +35,7 @@ public class After_next extends AppCompatActivity {
         setContentView(R.layout.activity_after_next);
         imageView = findViewById(R.id.imageView2);
         Intent in = getIntent();
-        String sc=in.getExtras("check");
+        String sc=in.getStringExtra("check");
         if(sc == "cam"){
             camera_Image_Uri=in.getData();
             imageView.setImageURI(camera_Image_Uri);
