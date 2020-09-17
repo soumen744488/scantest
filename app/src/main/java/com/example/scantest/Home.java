@@ -47,7 +47,7 @@ public class Home extends AppCompatActivity {
     FloatingActionButton fabAdd,fabCamera,fabGallary;
     Animation fabOpen,fabClose,rotateForward,rotateBackward;
     boolean isOpen=false;
-    Bitmap bitmap;
+    Bitmap bitmap,gallaryImagebitmap;
     AlertDialog creditdialog,privacydialog,aboutappdialog;
     Uri camareImageUri,gallaryImageUri;
 
@@ -186,18 +186,15 @@ public class Home extends AppCompatActivity {
         if(requestCode==CAMERA_IMAGE_CAPTURE_CODE ){
 
             Intent i =new Intent(Home.this,After_next.class);
-
-
             i.setData(camareImageUri);
-            // i.putExtra("cameraImage",camareImageUri.toString());
             startActivity(i);
         }
         else if(requestCode == GALLARY_IMAGE_CAPTURE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            //gallaryImageUri=data.getData();
-            Intent i =new Intent(Home.this,After_next.class);
-            i.setData(gallaryImageUri);
-            //  i.putExtra("gallryImage",gallaryImageUri.toString());
-            startActivity(i);
+            gallaryImageUri = data.getData();
+            Intent intent = new Intent(Home.this,After_next.class);
+            intent.putExtra("imageUri",gallaryImageUri.toString());
+            //Toast.makeText(getApplicationContext(), gallaryImageUri.toString(), Toast.LENGTH_LONG).show();
+            startActivity(intent);
 
         }
     }
