@@ -50,12 +50,6 @@ public class After_next extends AppCompatActivity {
             }
             private void UserItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.crop:
-                        //CropImage.activity(camera_Image_Uri).setGuidelines(CropImageView.Guidelines.ON).setMultiTouchEnabled(true).start(After_next.this);
-                        break;
-                    case R.id.rotation:
-                       imageView.setRotation(imageView.getRotation() + 90);
-                       break;
 
                     case R.id.filter:
                         break;

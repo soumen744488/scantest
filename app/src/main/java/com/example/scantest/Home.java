@@ -119,7 +119,9 @@ public class Home extends AppCompatActivity {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animateFab();
+               // animateFab();
+                CropImage.startPickImageActivity(Home.this);
+
             }
         });
 
@@ -127,7 +129,7 @@ public class Home extends AppCompatActivity {
 
 
 
-        fabGallary.setOnClickListener(new View.OnClickListener() {
+      /*  fabGallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CropImage.startPickImageActivity(Home.this);
@@ -139,7 +141,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 CropImage.startPickImageActivity(Home.this);
             }
-        });
+        });*/
     }
 
     @Override
@@ -165,7 +167,7 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    private void animateFab(){
+   /* private void animateFab(){
         if(isOpen){
             fabAdd.startAnimation(rotateForward);
             fabCamera.startAnimation(fabClose);
@@ -182,7 +184,7 @@ public class Home extends AppCompatActivity {
             fabGallary.setClickable(true);
             isOpen=true;
         }
-    }
+    }*/
 
 
     @Override

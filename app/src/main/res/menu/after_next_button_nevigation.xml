@@ -3,17 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/crop"
-        android:icon="@drawable/marketing"
-        android:title="crop"
-        android:enabled="true"
-        />
-    <item
-        android:id="@+id/rotation"
-        android:icon="@drawable/replay"
-        android:title="Rotation"
-        android:enabled="true" />
-    <item
         android:id="@+id/filter"
         android:icon="@drawable/filter"
         android:title="Filter"
