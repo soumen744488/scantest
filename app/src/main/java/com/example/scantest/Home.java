@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,6 +33,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,7 +52,7 @@ public class Home extends AppCompatActivity {
     boolean isOpen=false;
     Bitmap bitmap,gallaryImagebitmap;
     AlertDialog creditdialog,privacydialog,aboutappdialog;
-    Uri camareImageUri,gallaryImageUri;
+    Uri camareImageUri,uri;
 
 
 
@@ -127,87 +130,40 @@ public class Home extends AppCompatActivity {
         fabGallary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                animateFab();
-                getPicture();
-
-                // Toast.makeText(Home.this, "Gallary Click", Toast.LENGTH_SHORT).show();
+                CropImage.startPickImageActivity(Home.this);
             }
         });
 
-        fabCamera.setOnClickListener(new View.OnClickListener() {
+       fabCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.CAMERA)==
-                            PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
-                            PackageManager.PERMISSION_DENIED){
-                        String[] permission = {Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permission,PERMISSION_CODE);
-                    }
-                    else{
-                        openCamera();
-                    }
-
-
-                }
-                else{
-                    openCamera();
-                }
+                CropImage.startPickImageActivity(Home.this);
             }
         });
     }
-
-
-
-    private void openCamera() {
-        ContentValues values=new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE,"new image");
-        values.put(MediaStore.Images.Media.DESCRIPTION,"From the camera");
-        camareImageUri=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
-        Intent cameraIntent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,camareImageUri);
-        startActivityForResult(cameraIntent,CAMERA_IMAGE_CAPTURE_CODE);
-    }
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CAMERA_REQUEST) {
-            openCamera();
-        }
-
-    }*/
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CAMERA_IMAGE_CAPTURE_CODE ){
-
-            Intent i =new Intent(Home.this,After_next.class);
-            i.setData(camareImageUri);
-            i.putExtra("check","cam");
-
-            startActivity(i);
+        if(requestCode==CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode== Activity.RESULT_OK){
+            Uri imageuri = CropImage.getPickImageResultUri(this,data);
+            if(CropImage.isReadExternalStoragePermissionsRequired(this,imageuri)){
+                uri=imageuri;
+                Toast.makeText(getApplicationContext(), imageuri.toString(), Toast.LENGTH_SHORT).show();
+                requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},0);
+            }else{
+                CropImage.activity(uri).setGuidelines(CropImageView.Guidelines.ON).setMultiTouchEnabled(true).start(this);
+            }
         }
-        else if(requestCode == GALLARY_IMAGE_CAPTURE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            gallaryImageUri = data.getData();
-            Intent intent = new Intent(Home.this,After_next.class);
-            intent.putExtra("imageUri",gallaryImageUri.toString());
-            //Toast.makeText(getApplicationContext(), gallaryImageUri.toString(), Toast.LENGTH_LONG).show();
-            startActivity(intent);
-
+        if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if(resultCode==RESULT_OK){
+                Intent intent = new Intent(Home.this,After_next.class);
+                intent.putExtra("imageUri",result.getUri().toString());
+                startActivity(intent);
+            }
         }
     }
-
-    private void getPicture() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent,"Select Picture"),GALLARY_IMAGE_CAPTURE_CODE);
-    }
-
 
     private void animateFab(){
         if(isOpen){

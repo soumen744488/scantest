@@ -34,28 +34,13 @@ public class After_next extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_next);
         imageView = findViewById(R.id.imageView2);
+
         Intent in = getIntent();
-        String sc=in.getExtras("check");
-        if(sc == "cam"){
-            camera_Image_Uri=in.getData();
-            imageView.setImageURI(camera_Image_Uri);
-        }
-        else{
-            gallaryuri = Uri.parse(getIntent().getStringExtra("imageUri"));
-            //Toast.makeText(getApplicationContext(), gallaryuri.toString(), Toast.LENGTH_SHORT).show();
-            imageView.setImageURI(gallaryuri);
-        }
-
-
-
-
-
+        gallaryuri = Uri.parse(getIntent().getStringExtra("imageUri"));
+        imageView.setImageURI(gallaryuri);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.edit_nav);
-
-
-
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -63,21 +48,10 @@ public class After_next extends AppCompatActivity {
                 UserItemSelected(item);
                 return false;
             }
-
-            public void onActivityResult(int requestCode, int resultCode, Intent data) {
-                if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-                    final Uri resultUri = UCrop.getOutput(data);
-                } else if (resultCode == UCrop.RESULT_ERROR) {
-                    final Throwable cropError = UCrop.getError(data);
-                }
-            }
-
-
-
             private void UserItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.crop:
-                        CropImage.activity(camera_Image_Uri).setGuidelines(CropImageView.Guidelines.ON).setMultiTouchEnabled(true).start(After_next.this);
+                        //CropImage.activity(camera_Image_Uri).setGuidelines(CropImageView.Guidelines.ON).setMultiTouchEnabled(true).start(After_next.this);
                         break;
                     case R.id.rotation:
                        imageView.setRotation(imageView.getRotation() + 90);
@@ -103,12 +77,6 @@ public class After_next extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if(resultCode==RESULT_OK){
-                imageView.setImageURI(result.getUri());
-                Toast.makeText(getApplicationContext(), "Crop Successfully", Toast.LENGTH_SHORT).show();
-            }
-        }
+
     }
 }
