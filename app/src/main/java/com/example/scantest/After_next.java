@@ -1,6 +1,7 @@
 package com.example.scantest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 import com.yalantis.ucrop.UCrop;
 
 public class After_next extends AppCompatActivity {
@@ -68,11 +71,7 @@ public class After_next extends AppCompatActivity {
             private void UserItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.crop:
-                        UCrop.of(camera_Image_Uri,uri_new)
-                                .withAspectRatio(16, 9)
-                                .withMaxResultSize(100, 100)
-                                .start(After_next.this);
-
+                        CropImage.activity(camera_Image_Uri).setGuidelines(CropImageView.Guidelines.ON).setMultiTouchEnabled(true).start(After_next.this);
                         break;
                     case R.id.rotation:
                        imageView.setRotation(imageView.getRotation() + 90);
@@ -93,12 +92,17 @@ public class After_next extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
-
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if(resultCode==RESULT_OK){
+                imageView.setImageURI(result.getUri());
+                Toast.makeText(getApplicationContext(), "Crop Successfully", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
