@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/filter"
+        android:id="@+id/adjust"
         android:icon="@drawable/filter"
-        android:title="Filter"
+        android:title="Adjust"
         android:enabled="true" />
     <item
-        android:id="@+id/color"
-        android:icon="@drawable/art"
-        android:title="Color"
+        android:id="@+id/filter"
+        android:icon="@drawable/ic_baseline_filter_drama_24"
+        android:title="Filters"
         android:enabled="true" />
 
     <item
