@@ -75,7 +75,7 @@
 
             <Button
                 android:id="@+id/color7"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="70dp"
                 android:drawableTop="@drawable/ic_baseline_filter_drama_24"
                 android:layout_margin="5dp"
