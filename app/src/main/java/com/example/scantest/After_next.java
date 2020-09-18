@@ -126,6 +126,14 @@ public class After_next extends AppCompatActivity {
         sharpness = adjustdialogView.findViewById(R.id.sharpnessseekbar);
         smooth = adjustdialogView.findViewById(R.id.smoothseekBar);
 
+        Button okad = adjustdialogView.findViewById(R.id.okadjust);
+        okad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adjustdialog.dismiss();
+            }
+        });
+
         brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
