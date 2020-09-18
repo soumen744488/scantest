@@ -34,7 +34,7 @@ public class AboutUs extends AppCompatActivity {
         j.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.facebook.com/profile.php?id=100032547081924&ref=content_filter")));
             }
         });
         s.setOnClickListener(new View.OnClickListener() {
