@@ -129,7 +129,7 @@ public class After_next extends AppCompatActivity {
         brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                setbitmap=imageProcessor.doBrightness(imagebitmap,progress);
+                setbitmap=imageProcessor.doBrightness(imagebitmap,progress*10);
                 imageView.setImageBitmap(setbitmap);
             }
 
@@ -146,7 +146,7 @@ public class After_next extends AppCompatActivity {
         sharpness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                setbitmap=imageProcessor.sharpen(imagebitmap,progress);
+                setbitmap=imageProcessor.sharpen(imagebitmap,progress*10);
                 imageView.setImageBitmap(setbitmap);
             }
 
@@ -163,7 +163,7 @@ public class After_next extends AppCompatActivity {
         smooth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                setbitmap=imageProcessor.smooth(imagebitmap,progress);
+                setbitmap=imageProcessor.smooth(imagebitmap,progress*10);
                 imageView.setImageBitmap(setbitmap);
             }
 
