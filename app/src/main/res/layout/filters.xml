@@ -2,44 +2,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="15dp"
-            >
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton"
+            <Button
+                android:id="@+id/blackfilter"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_filter_drama_24" />
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:text="Black-Filter"
+                android:textSize="10dp"
+                android:layout_margin="5dp"
+                android:backgroundTintMode="screen"/>
 
-            <ImageButton
-                android:id="@+id/imageButton2"
+            <Button
+                android:id="@+id/GaussianBlur"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_filter_drama_24" />
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:text="Gaussian-Blur"
+                android:backgroundTintMode="screen"/>
 
-            <ImageButton
-                android:id="@+id/imageButton3"
+            <Button
+                android:id="@+id/engrave"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_filter_drama_24" />
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:text="Engrave"
+                android:backgroundTintMode="screen"/>
 
-            <ImageButton
+            <Button
                 android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_filter_drama_24" />
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:backgroundTintMode="screen"/>
+
+            <Button
+                android:id="@+id/imageButton5"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:backgroundTintMode="screen"/>
+
+            <Button
+                android:id="@+id/imageButton6"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:backgroundTintMode="screen"/>
+
+            <Button
+                android:id="@+id/imageButton7"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:backgroundTintMode="screen"/>
         </LinearLayout>
-    </ScrollView>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/dismissave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="save"
+        android:background="#FFFFFF"
+        android:layout_gravity="right"/>
 </LinearLayout>
