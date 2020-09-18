@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".AboutUs">
+
+    <Button
+        android:id="@+id/moumita"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="#fff"
+        android:text="Moumita" />
+
+    <Button
+        android:id="@+id/tithi"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="#fff"
+        android:text="Tithi" />
+
+    <Button
+        android:id="@+id/jhulan"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="#fff"
+        android:text="jhulan" />
+
+    <Button
+        android:id="@+id/sangita"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="#fff"
+        android:text="sangita" />
+</LinearLayout>

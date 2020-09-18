@@ -23,13 +23,5 @@
         android:icon="@drawable/share"
         android:title="@string/ShareThisApp" />
 
-    <item
-        android:id="@+id/nav_Signin"
-        android:icon="@drawable/login"
-        android:title="@string/Signin" />
 
-    <item
-        android:id="@+id/nav_Signout"
-        android:icon="@drawable/logout"
-        android:title="@string/Signout" />
 </menu>

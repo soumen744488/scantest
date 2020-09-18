@@ -101,6 +101,7 @@ public class Home extends AppCompatActivity {
                         startActivity(Intent.createChooser(myIntent,"Share using"));
                         break;
                     case R.id.nav_AboutUs:
+                        startActivity(new Intent(Home.this,AboutUs.class));
                         break;
 
                     case R.id.nav_Help:
@@ -108,10 +109,7 @@ public class Home extends AppCompatActivity {
                     case R.id.nav_RateThisApp:
                       //  startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/")));
                         break;
-                    case R.id.nav_Signin:
-                        break;
-                    case R.id.nav_Signout:
-                        break;
+
 
                 }
 

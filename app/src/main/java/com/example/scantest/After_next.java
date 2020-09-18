@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.opengl.Matrix;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -67,6 +68,21 @@ public class After_next extends AppCompatActivity {
 
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.after_next_option_menu,menu);
+        return (true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.save:
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
