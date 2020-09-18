@@ -17,22 +17,31 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/color4"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
+                android:layout_margin="5dp"
+                android:text="Black-white"
+                android:backgroundTintMode="screen"/>
+
+            <Button
                 android:id="@+id/blackfilter"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:drawableTop="@drawable/ic_baseline_filter_drama_24"
                 android:text="Black-Filter"
-                android:textSize="10dp"
+
                 android:layout_margin="5dp"
                 android:backgroundTintMode="screen"/>
 
             <Button
-                android:id="@+id/GaussianBlur"
+                android:id="@+id/invert"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:drawableTop="@drawable/ic_baseline_filter_drama_24"
                 android:layout_margin="5dp"
-                android:text="Gaussian-Blur"
+                android:text="Invert"
                 android:backgroundTintMode="screen"/>
 
             <Button
@@ -44,36 +53,33 @@
                 android:text="Engrave"
                 android:backgroundTintMode="screen"/>
 
+
+
             <Button
-                android:id="@+id/imageButton4"
-                android:layout_width="70dp"
+                android:id="@+id/color5"
+                android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:drawableTop="@drawable/ic_baseline_filter_drama_24"
                 android:layout_margin="5dp"
+                android:text="REFLECTION"
                 android:backgroundTintMode="screen"/>
 
             <Button
-                android:id="@+id/imageButton5"
-                android:layout_width="70dp"
+                android:id="@+id/color6"
+                android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:drawableTop="@drawable/ic_baseline_filter_drama_24"
                 android:layout_margin="5dp"
+                android:text="HueFilter"
                 android:backgroundTintMode="screen"/>
 
             <Button
-                android:id="@+id/imageButton6"
-                android:layout_width="70dp"
+                android:id="@+id/color7"
+                android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:drawableTop="@drawable/ic_baseline_filter_drama_24"
                 android:layout_margin="5dp"
-                android:backgroundTintMode="screen"/>
-
-            <Button
-                android:id="@+id/imageButton7"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:drawableTop="@drawable/ic_baseline_filter_drama_24"
-                android:layout_margin="5dp"
+                android:text="Haze"
                 android:backgroundTintMode="screen"/>
         </LinearLayout>
     </HorizontalScrollView>
@@ -83,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="save"
+        android:text="Select"
         android:background="#FFFFFF"
         android:layout_gravity="right"/>
 </LinearLayout>

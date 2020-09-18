@@ -108,10 +108,15 @@ public class After_next extends AppCompatActivity {
 
 
     private void adjustdialogbutton() {
-        Button b1,b2,b3,b4,b5,b6,b7,b8,savedismis;
+        Button b1,b2,b3,b4,b5,b6,b7,savedismis;
         b1=adjustdialogView.findViewById(R.id.blackfilter);
         b2=adjustdialogView.findViewById(R.id.engrave);
-        b3=adjustdialogView.findViewById(R.id.GaussianBlur);
+        b3=adjustdialogView.findViewById(R.id.invert);
+        b4=adjustdialogView.findViewById(R.id.color4);
+        b5=adjustdialogView.findViewById(R.id.color5);
+        b6=adjustdialogView.findViewById(R.id.color6);
+        b7=adjustdialogView.findViewById(R.id.color7);
+
         savedismis=adjustdialogView.findViewById(R.id.dismissave);
 
         savedismis.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +143,35 @@ public class After_next extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setbitmap=imageProcessor.applyGaussianBlur(imagebitmap);
+                setbitmap=imageProcessor.doInvert(imagebitmap);
+                imageView.setImageBitmap(setbitmap);
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setbitmap=imageProcessor.doGreyScale(imagebitmap);
+                imageView.setImageBitmap(setbitmap);
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setbitmap=imageProcessor.applyReflection(imagebitmap);
+                imageView.setImageBitmap(setbitmap);
+            }
+        });
+        b6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setbitmap=imageProcessor.applyHueFilter(imagebitmap,2);
+                imageView.setImageBitmap(setbitmap);
+            }
+        });
+        b7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setbitmap=imageProcessor.applyFleaEffect(imagebitmap);
                 imageView.setImageBitmap(setbitmap);
             }
         });
