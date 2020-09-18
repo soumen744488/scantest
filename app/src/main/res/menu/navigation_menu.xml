@@ -10,9 +10,9 @@
 
 
     <item
-        android:id="@+id/nav_Help"
+        android:id="@+id/info"
         android:icon="@drawable/help"
-        android:title="@string/Help" />
+        android:title="App Info" />
 
     <item
         android:id="@+id/nav_RateThisApp"

@@ -53,8 +53,9 @@ public class Home extends AppCompatActivity {
     Animation fabOpen,fabClose,rotateForward,rotateBackward;
     boolean isOpen=false;
     Bitmap bitmap,gallaryImagebitmap;
-    AlertDialog creditdialog,privacydialog,aboutappdialog;
+
     Uri camareImageUri,uri;
+    AlertDialog aboutappdialog;
 
 
 
@@ -76,7 +77,11 @@ public class Home extends AppCompatActivity {
         rotateForward = AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
         rotateBackward = AnimationUtils.loadAnimation(this,R.anim.rotate_bacward);
 
-
+        AlertDialog.Builder aboutbuilder = new AlertDialog.Builder(Home.this);
+        LayoutInflater infab = this.getLayoutInflater();
+        final View aboutdialogView = infab.inflate();
+        aboutbuilder.setView(aboutdialogView);
+        aboutappdialog = aboutbuilder.create();
 
         NavigationView navigationView = findViewById(R.id.navigationView);
         View view = navigationView.inflateHeaderView(R.layout.navigation_header);
@@ -104,8 +109,17 @@ public class Home extends AppCompatActivity {
                         startActivity(new Intent(Home.this,AboutUs.class));
                         break;
 
-                    case R.id.nav_Help:
+                    case R.id.info:
+                        aboutappdialog.setButton(AlertDialog.BUTTON_NEUTRAL,"Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                aboutappdialog.dismiss();
+                            }
+                        });
+                        aboutappdialog.show();
+                        aboutappdialog.setCancelable(false);
                         break;
+
                     case R.id.nav_RateThisApp:
                       //  startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/")));
                         break;
