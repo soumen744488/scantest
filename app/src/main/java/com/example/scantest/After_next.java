@@ -27,6 +27,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,8 +43,8 @@ public class After_next extends AppCompatActivity {
 
     ImageView imageView;
     Uri gallaryuri;
-    AlertDialog adjustdialog;
-    View adjustdialogView;
+    AlertDialog filterdialog,adjustdialog;
+    View adjustdialogView,filterdialogView;
     Bitmap imagebitmap,setbitmap;
     ImageProcessor imageProcessor;
 
@@ -67,12 +68,20 @@ public class After_next extends AppCompatActivity {
 
         AlertDialog.Builder builderadjust = new AlertDialog.Builder(After_next.this);
         LayoutInflater infab = this.getLayoutInflater();
-        adjustdialogView = infab.inflate(R.layout.filters,null);
+        adjustdialogView = infab.inflate(R.layout.adjust,null);
         builderadjust.setView(adjustdialogView);
         adjustdialog=builderadjust.create();
 
+        AlertDialog.Builder builderfilter = new AlertDialog.Builder(After_next.this);
+        LayoutInflater infil = this.getLayoutInflater();
+        filterdialogView = infil.inflate(R.layout.filters,null);
+        builderfilter.setView(filterdialogView);
+        filterdialog=builderfilter.create();
 
-        adjustdialogbutton();
+
+        filteroperation();
+        adjustoperation();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.edit_nav);
 
@@ -86,13 +95,18 @@ public class After_next extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.filter:
-                        WindowManager.LayoutParams wlp = adjustdialog.getWindow().getAttributes();
+                        WindowManager.LayoutParams wlp = filterdialog.getWindow().getAttributes();
                         wlp.width = ViewGroup.LayoutParams.MATCH_PARENT;
                         wlp.gravity= Gravity.BOTTOM ;
-                        adjustdialog.show();
-                        adjustdialog.setCancelable(false);
+                        filterdialog.show();
+                        filterdialog.setCancelable(false);
                         break;
                     case R.id.adjust:
+                        WindowManager.LayoutParams wlp0 = adjustdialog.getWindow().getAttributes();
+                        wlp0.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                        wlp0.gravity= Gravity.BOTTOM ;
+                        adjustdialog.show();
+                        adjustdialog.setCancelable(false);
                         break;
 
                     case R.id.trash:
@@ -106,23 +120,83 @@ public class After_next extends AppCompatActivity {
         });
     }
 
+    private void adjustoperation() {
+        SeekBar brightness,sharpness,smooth;
+        brightness = adjustdialogView.findViewById(R.id.brightnessseekbar);
+        sharpness = adjustdialogView.findViewById(R.id.sharpnessseekbar);
+        smooth = adjustdialogView.findViewById(R.id.smoothseekBar);
 
-    private void adjustdialogbutton() {
+        brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setbitmap=imageProcessor.doBrightness(imagebitmap,progress);
+                imageView.setImageBitmap(setbitmap);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        sharpness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setbitmap=imageProcessor.sharpen(imagebitmap,progress);
+                imageView.setImageBitmap(setbitmap);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        smooth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setbitmap=imageProcessor.smooth(imagebitmap,progress);
+                imageView.setImageBitmap(setbitmap);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+    }
+
+
+    private void filteroperation() {
         Button b1,b2,b3,b4,b5,b6,b7,savedismis;
-        b1=adjustdialogView.findViewById(R.id.blackfilter);
-        b2=adjustdialogView.findViewById(R.id.engrave);
-        b3=adjustdialogView.findViewById(R.id.invert);
-        b4=adjustdialogView.findViewById(R.id.color4);
-        b5=adjustdialogView.findViewById(R.id.color5);
-        b6=adjustdialogView.findViewById(R.id.color6);
-        b7=adjustdialogView.findViewById(R.id.color7);
+        b1=filterdialogView.findViewById(R.id.blackfilter);
+        b2=filterdialogView.findViewById(R.id.engrave);
+        b3=filterdialogView.findViewById(R.id.invert);
+        b4=filterdialogView.findViewById(R.id.color4);
+        b5=filterdialogView.findViewById(R.id.color5);
+        b6=filterdialogView.findViewById(R.id.color6);
+        b7=filterdialogView.findViewById(R.id.color7);
 
-        savedismis=adjustdialogView.findViewById(R.id.dismissave);
+        savedismis=filterdialogView.findViewById(R.id.dismissave);
 
         savedismis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adjustdialog.dismiss();
+                filterdialog.dismiss();
             }
         });
 
