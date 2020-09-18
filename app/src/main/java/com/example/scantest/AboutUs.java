@@ -28,7 +28,7 @@ public class AboutUs extends AppCompatActivity {
         t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.facebook.com/tithi.pal.1610")));
             }
         });
         j.setOnClickListener(new View.OnClickListener() {

@@ -79,7 +79,7 @@ public class Home extends AppCompatActivity {
 
         AlertDialog.Builder aboutbuilder = new AlertDialog.Builder(Home.this);
         LayoutInflater infab = this.getLayoutInflater();
-        final View aboutdialogView = infab.inflate();
+        final View aboutdialogView = infab.inflate(R.layout.about,null);
         aboutbuilder.setView(aboutdialogView);
         aboutappdialog = aboutbuilder.create();
 

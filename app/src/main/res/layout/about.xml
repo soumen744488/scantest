@@ -5,69 +5,43 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About App"
-        android:textColor="#4069AC"
+        android:text="Privacy Policies"
+        android:textSize="26dp"
         android:textStyle="bold"
-        android:textSize="27dp"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:textColor="#4073C8"/>
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/textView10"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="#000000"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_margin="10dp"/>
 
-    <TextView
-        android:id="@+id/textView12"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Read Write and Share"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        >
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Version 1.0"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Package Name : com.example.rws"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:background="@drawable/backgroundedittext"
+                android:text="\n    We care about your privacy and data security.\n\n    We want full storge access for  saving your data on your system. \n\n This is a scanner app, vai this app user can scan any type of document\n And save its in file\n"
+                android:textAlignment="center"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </ScrollView>
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="API : 24+"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"/>
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Language : English"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"/>
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Country : India"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"/>
 </LinearLayout>
