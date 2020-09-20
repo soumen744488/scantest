@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -16,6 +17,7 @@ import android.net.Uri;
 import android.opengl.Matrix;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.Gravity;
@@ -35,14 +37,18 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mukesh.image_processing.ImageProcessor;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 import com.yalantis.ucrop.UCrop;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class After_next extends AppCompatActivity {
 
@@ -52,6 +58,8 @@ public class After_next extends AppCompatActivity {
     View adjustdialogView,filterdialogView;
     Bitmap imagebitmap,setbitmap;
     ImageProcessor imageProcessor;
+    ArrayList<Bitmap> imagelist;
+    Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,13 @@ public class After_next extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_after_next);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String gsonst=sharedPreferences.getString("images","");
+        imagelist=gson.fromJson(gsonst,new TypeToken<ArrayList<Bitmap>>(){}.getType());
+        if(imagelist==null){
+            imagelist=new ArrayList<>();
+        }
 
 
         //adjustdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -127,12 +142,10 @@ public class After_next extends AppCompatActivity {
                         startActivity(new Intent(After_next.this,Home.class));
                         finish();
                         break;
-
-
-                    }
-
-
                 }
+
+
+            }
 
 
         });
@@ -231,8 +244,8 @@ public class After_next extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               setbitmap=imageProcessor.applyBlackFilter(imagebitmap);
-               imageView.setImageBitmap(setbitmap);
+                setbitmap=imageProcessor.applyBlackFilter(imagebitmap);
+                imageView.setImageBitmap(setbitmap);
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
@@ -287,7 +300,19 @@ public class After_next extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.save:
+            case R.id.next:
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                if(setbitmap==null){
+                    setbitmap=imagebitmap;
+                }
+                imagelist.add(setbitmap);
+                Toast.makeText(getApplicationContext(), imagelist.size()+"", Toast.LENGTH_LONG).show();
+                String gsonstring = gson.toJson(imagelist);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("images",gsonstring);
+                editor.commit();
+                startActivity(new Intent(After_next.this,SaveImages.class));
+                finish();
                 break;
 
         }
