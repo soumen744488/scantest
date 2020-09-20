@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         logo=findViewById(R.id.imageView);
         handler=new Handler();
         Toast.makeText(getApplicationContext(),"this is for test version",Toast.LENGTH_LONG).show();

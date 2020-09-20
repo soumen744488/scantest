@@ -9,10 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.pdf.PdfDocument;
 import android.icu.text.DateTimePatternGenerator;
 import android.net.Uri;
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.Gravity;
@@ -37,6 +40,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 import com.yalantis.ucrop.UCrop;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class After_next extends AppCompatActivity {
@@ -50,9 +55,16 @@ public class After_next extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_after_next);
+
+
         //adjustdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
 
         imageView = findViewById(R.id.imageView2);
 
@@ -85,6 +97,7 @@ public class After_next extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.edit_nav);
 
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -111,14 +124,42 @@ public class After_next extends AppCompatActivity {
 
                     case R.id.trash:
                         imageView.setImageDrawable(null);
-                       startActivity(new Intent(After_next.this,Home.class));
+                        startActivity(new Intent(After_next.this,Home.class));
                         finish();
+                        break;
+
+                    case R.id.save:
+                        PdfDocument pdfDocument=new PdfDocument();
+                        PdfDocument.PageInfo pi= new PdfDocument.PageInfo.Builder(imagebitmap.getWidth(),imagebitmap.getHeight(),1).create();
+                        PdfDocument.Page page=pdfDocument.startPage(pi);
+                        Canvas canvas=page.getCanvas();
+                        canvas.drawBitmap(imagebitmap,0,0,null);
+                        pdfDocument.finishPage(page);
+                        //save the bitmap image
+                        File root= new File(Environment.getExternalStorageDirectory(),"SCAN BY OWN DOC");
+                        if(!root.exists()){
+                            root.mkdir();
+                        }
+                        File file= new File(root,"picture.pdf");
+                        try{
+                            // FileOutputStream fileOutputStream= new FileOutputStream(file);
+                            pdfDocument.writeTo(new FileOutputStream(file));
+                            Toast.makeText(After_next.this, "Pdf is save", Toast.LENGTH_SHORT).show();
+                        }catch(IOException e){
+                            e.printStackTrace();
+                            Toast.makeText(After_next.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                        pdfDocument.close();
+                    }
+
 
                 }
-            }
+
 
         });
+
     }
+
 
     private void adjustoperation() {
         SeekBar brightness,sharpness,smooth;

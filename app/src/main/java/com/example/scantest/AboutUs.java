@@ -40,7 +40,7 @@ public class AboutUs extends AppCompatActivity {
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/my_self_sangita_ghosh/?hl=en")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/profile.php?id=100027638769283")));
             }
         });
     }
